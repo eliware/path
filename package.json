@@ -2,7 +2,7 @@
   "name": "@eliware/path",
   "type": "module",
   "version": "1.1.4",
-  "description": "An ESM/Jest friendly path utility.",
+  "description": "Import-meta-based path utilities for modern Node.js ESM applications.",
   "module": "index.mjs",
   "types": "index.d.ts",
   "files": [
@@ -38,7 +38,11 @@
     "resolver",
     "filepath",
     "import",
-    "testing"
+    "testing",
+    "resolve",
+    "relative",
+    "file-url",
+    "file-url-to-path"
   ],
   "author": "Eli Sterling <eli@eliware.org>",
   "license": "MIT",
