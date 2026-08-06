@@ -18,3 +18,13 @@
 - Added the standardized Oxlint command.
 - Updated package metadata and lockfiles for the latest maintenance pass.
 - Synchronized the package with the current Eliware Node.js 26 workflow conventions.
+
+## 1.1.5
+
+- Added `resolvePath()` for resolving paths from an `import.meta` basis.
+- Added `relativePath()` for calculating paths relative to the `import.meta` directory.
+- Added `fileUrlToPath()` for converting file URLs back to filesystem paths.
+- Expanded TypeScript declarations, examples, and documentation.
+- Removed legacy CommonJS entrypoints and tests; the package is now ESM-only.
+- Added manual GitHub Actions workflow dispatch support.
+- Verified with 19 tests, 100% coverage, and clean Oxlint output.
