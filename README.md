@@ -23,7 +23,8 @@
 - Works seamlessly in Node.js, Jest, and modern ESM environments
 - TypeScript type definitions included
 - Simple, dependency-free, and well-tested
-- **NEW:** `pathUrl` helper for cross-platform dynamic import
+- `pathUrl`, `resolvePath`, and `relativePath` helpers based on `import.meta`
+- `fileUrlToPath` for converting file URLs back to filesystem paths
 
 ## Installation
 
@@ -36,7 +37,7 @@ npm install @eliware/path
 ### ESM Example
 
 ```js
-import path, { pathUrl } from '@eliware/path';
+import path, { fileUrlToPath, pathUrl, relativePath, resolvePath } from '@eliware/path';
 
 // for ESM, we need to pass import.meta
 const envFile = path(import.meta, ".env");
