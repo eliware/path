@@ -99,3 +99,17 @@ describe('ESM API', () => {
         expect(href.endsWith(__dirname.replace(/\\/g, '/'))).toBe(true);
     });
 });
+test('resolvePath resolves from the import.meta directory', async () => {
+  const { resolvePath } = await import('./index.mjs');
+  expect(resolvePath(import.meta, './child/file.txt')).toBe(new URL('./child/file.txt', import.meta.url).pathname);
+});
+
+test('relativePath returns a path relative to the import.meta directory', async () => {
+  const { relativePath } = await import('./index.mjs');
+  expect(relativePath(import.meta, './child/file.txt')).toBe('child/file.txt');
+});
+
+test('fileUrlToPath converts file URLs', async () => {
+  const { fileUrlToPath } = await import('./index.mjs');
+  expect(fileUrlToPath(new URL('./index.mjs', import.meta.url))).toBe(new URL('./index.mjs', import.meta.url).pathname);
+});
