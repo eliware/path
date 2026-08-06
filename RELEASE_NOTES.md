@@ -28,3 +28,8 @@
 - Removed legacy CommonJS entrypoints and tests; the package is now ESM-only.
 - Added manual GitHub Actions workflow dispatch support.
 - Verified with 19 tests, 100% coverage, and clean Oxlint output.
+
+## 1.1.6
+
+- Fixed Windows test failures by replacing POSIX-specific path expectations with platform-aware utilities.
+- Updated ESM path tests to use `fileURLToPath()` and `path.join()` for native path separators.
