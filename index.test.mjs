@@ -1,10 +1,8 @@
 // index.test.mjs: ESM API tests
 import { jest } from '@jest/globals';
 import path, { path as namedPath, getCurrentFilename, getCurrentDirname, pathUrl } from './index.mjs';
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
 import { fileURLToPath } from 'url';
-import { dirname as pathDirname } from 'path';
+import { dirname as pathDirname, join as pathJoin } from 'path';
 
 // Polyfill __dirname for ESM
 const __dirname = pathDirname(fileURLToPath(import.meta.url));
@@ -28,7 +26,7 @@ describe('ESM API', () => {
 
     test('getCurrentDirname returns correct dirname (import.meta)', () => {
         const dirnamePath = getCurrentDirname(import.meta);
-        const expected = require('path').dirname(getCurrentFilename(import.meta));
+        const expected = pathDirname(getCurrentFilename(import.meta));
         expect(dirnamePath).toBe(expected);
     });
 
@@ -43,9 +41,13 @@ describe('ESM API', () => {
         expect(stubFn).toHaveBeenCalledWith(getCurrentFilename(import.meta));
     });
 
+    test('path accepts empty string directory', () => {
+        expect(path('')).toBe('.');
+    });
+
     test('path joins single segment correctly (default export)', () => {
         const p = path(import.meta, 'index.mjs');
-        const expected = require('path').join(
+        const expected = pathJoin(
             getCurrentDirname(import.meta),
             'index.mjs'
         );
@@ -54,7 +56,7 @@ describe('ESM API', () => {
 
     test('path joins single segment correctly (named export)', () => {
         const p = namedPath(import.meta, 'index.mjs');
-        const expected = require('path').join(
+        const expected = pathJoin(
             getCurrentDirname(import.meta),
             'index.mjs'
         );
@@ -63,13 +65,13 @@ describe('ESM API', () => {
 
     test('path joins single segment correctly (__dirname, default export)', () => {
         const p = path(__dirname, 'index.mjs');
-        const expected = require('path').join(__dirname, 'index.mjs');
+        const expected = pathJoin(__dirname, 'index.mjs');
         expect(p).toBe(expected);
     });
 
     test('path joins single segment correctly (__dirname, named export)', () => {
         const p = namedPath(__dirname, 'index.mjs');
-        const expected = require('path').join(__dirname, 'index.mjs');
+        const expected = pathJoin(__dirname, 'index.mjs');
         expect(p).toBe(expected);
     });
 

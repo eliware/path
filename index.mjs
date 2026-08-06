@@ -9,7 +9,6 @@ import { dirname as pathDirname, join as pathJoin } from 'path';
 export const getCurrentFilename = (metaOrDir) => {
     if (typeof metaOrDir === 'string') return metaOrDir;
     if (metaOrDir && metaOrDir.url) return fileURLToPath(metaOrDir.url);
-    if (typeof __filename !== 'undefined') return __filename;
     throw new Error(
         'Cannot determine current filename: provide import.meta, __dirname, or run in Node.js environment with __filename.'
     );
@@ -24,9 +23,6 @@ export const getCurrentFilename = (metaOrDir) => {
 export const getCurrentDirname = (metaOrDir, dirnameFn = pathDirname) => {
     if (typeof metaOrDir === 'string') return metaOrDir;
     const filename = getCurrentFilename(metaOrDir);
-    if (!filename) {
-        throw new Error('Cannot determine current dirname: filename is empty.');
-    }
     return dirnameFn(filename);
 };
 
@@ -38,9 +34,6 @@ export const getCurrentDirname = (metaOrDir, dirnameFn = pathDirname) => {
  */
 const path = (metaOrDir, ...segments) => {
     const dir = getCurrentDirname(metaOrDir);
-    if (!dir) {
-        throw new Error('Cannot resolve path: current directory is empty.');
-    }
     return pathJoin(dir, ...segments);
 };
 

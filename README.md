@@ -2,7 +2,7 @@
 
 ## @eliware/path [![npm version](https://img.shields.io/npm/v/@eliware/path.svg)](https://www.npmjs.com/package/@eliware/path)[![license](https://img.shields.io/github/license/eliware/path.svg)](LICENSE)[![build status](https://github.com/eliware/path/actions/workflows/nodejs.yml/badge.svg)](https://github.com/eliware/path/actions)
 
-> An ESM/Jest/Node-friendly path utility for resolving file and directory paths in both CommonJS and ESM environments.
+> An ESM/Jest/Node-friendly path utility for resolving file and directory paths in ESM environments.
 
 ---
 
@@ -12,15 +12,14 @@
 - [Installation](#installation)
 - [Usage](#usage)
   - [ESM Example](#esm-example)
-  - [CommonJS Example](#commonjs-example)
-  - [Dynamic Import Example](#dynamic-import-example)
+    - [Dynamic Import Example](#dynamic-import-example)
 - [API](#api)
 - [TypeScript](#typescript)
 - [License](#license)
 
 ## Features
 
-- Unified API for ESM and CommonJS: pass either `import.meta` or a string (like `__dirname`)
+- Unified API for ESM: pass either `import.meta` or a string (like `__dirname`)
 - Works seamlessly in Node.js, Jest, and modern ESM environments
 - TypeScript type definitions included
 - Simple, dependency-free, and well-tested
@@ -49,21 +48,6 @@ console.log(envFileUrl);
 // import(envFileUrl).then(mod => ...);
 ```
 
-### CommonJS Example
-
-```js
-const { path, pathUrl } = require('@eliware/path');
-
-// for CommonJS, we need to pass __dirname
-const envFile = path(__dirname, '.env');
-console.log(envFile);
-
-// Get a file URL href for dynamic import
-const envFileUrl = pathUrl(__dirname, '.env');
-console.log(envFileUrl);
-// import(envFileUrl).then(mod => ...); // if using ESM loader in CJS
-```
-
 ### Dynamic Import Example
 
 ```js
@@ -71,9 +55,6 @@ console.log(envFileUrl);
 import { pathUrl } from '@eliware/path';
 const mod = await import(pathUrl(import.meta, './my-module.mjs'));
 
-// CommonJS (with ESM loader)
-const { pathUrl } = require('@eliware/path');
-const mod = await import(pathUrl(__dirname, './my-module.mjs'));
 ```
 
 ## API
