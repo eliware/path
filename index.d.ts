@@ -36,3 +36,12 @@ export const path: (
 export function pathUrl(metaOrDir: ImportMeta | string, ...segments: string[]): string;
 
 export default path;
+
+/** Resolves segments from the import.meta-derived directory. */
+export function resolvePath(metaOrDir: ImportMeta | string, ...segments: string[]): string;
+
+/** Returns a path relative to the import.meta-derived directory. */
+export function relativePath(metaOrDir: ImportMeta | string, ...segments: string[]): string;
+
+/** Converts a file URL string or URL object to a filesystem path. */
+export function fileUrlToPath(fileUrl: string | URL): string;
