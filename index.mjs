@@ -1,5 +1,5 @@
 import { fileURLToPath, pathToFileURL } from 'url';
-import { dirname as pathDirname, join as pathJoin } from 'path';
+import { dirname as pathDirname, join as pathJoin, relative as pathRelative, resolve as pathResolve } from 'path';
 
 /**
  * Returns the current filename from import.meta, a string, or __filename.
@@ -46,6 +46,19 @@ const path = (metaOrDir, ...segments) => {
 export const pathUrl = (metaOrDir, ...segments) => {
     return pathToFileURL(path(metaOrDir, ...segments)).href;
 };
+
+/** Resolves segments from the import.meta-derived directory. */
+export const resolvePath = (metaOrDir, ...segments) => {
+    return pathResolve(getCurrentDirname(metaOrDir), ...segments);
+};
+
+/** Returns a path relative to the import.meta-derived directory. */
+export const relativePath = (metaOrDir, ...segments) => {
+    return pathRelative(getCurrentDirname(metaOrDir), pathResolve(getCurrentDirname(metaOrDir), ...segments));
+};
+
+/** Converts a file URL string or URL object to a filesystem path. */
+export const fileUrlToPath = (fileUrl) => fileURLToPath(fileUrl);
 
 export default path;
 export { path };
