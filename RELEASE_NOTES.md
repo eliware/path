@@ -1,5 +1,9 @@
 # Release Notes
 
+## 1.1.7
+
+- Fixed coverage-gap filtering so fully covered files are excluded correctly.
+
 ## 1.1.3 — Current changes
 
 - Standardized Node.js 26 CI workflow.
