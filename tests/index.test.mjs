@@ -1,6 +1,6 @@
 // index.test.mjs: ESM API tests
 import { jest } from '@jest/globals';
-import path, { path as namedPath, getCurrentFilename, getCurrentDirname, pathUrl } from './index.mjs';
+import path, { path as namedPath, getCurrentFilename, getCurrentDirname, pathUrl } from '../index.mjs';
 import { fileURLToPath } from 'url';
 import { dirname as pathDirname, join as pathJoin } from 'path';
 
@@ -100,16 +100,16 @@ describe('ESM API', () => {
     });
 });
 test('resolvePath resolves from the import.meta directory', async () => {
-  const { resolvePath } = await import('./index.mjs');
+  const { resolvePath } = await import('../index.mjs');
   expect(resolvePath(import.meta, './child/file.txt')).toBe(fileURLToPath(new URL('./child/file.txt', import.meta.url)));
 });
 
 test('relativePath returns a path relative to the import.meta directory', async () => {
-  const { relativePath } = await import('./index.mjs');
+  const { relativePath } = await import('../index.mjs');
   expect(relativePath(import.meta, './child/file.txt')).toBe(pathJoin('child', 'file.txt'));
 });
 
 test('fileUrlToPath converts file URLs', async () => {
-  const { fileUrlToPath } = await import('./index.mjs');
-  expect(fileUrlToPath(new URL('./index.mjs', import.meta.url))).toBe(fileURLToPath(new URL('./index.mjs', import.meta.url)));
+  const { fileUrlToPath } = await import('../index.mjs');
+  expect(fileUrlToPath(new URL('../index.mjs', import.meta.url))).toBe(fileURLToPath(new URL('../index.mjs', import.meta.url)));
 });
