@@ -26,6 +26,11 @@
 - `pathUrl`, `resolvePath`, and `relativePath` helpers based on `import.meta`
 - `fileUrlToPath` for converting file URLs back to filesystem paths
 
+## Requirements
+
+- Node.js 26 or newer
+- Native ESM support
+
 ## Installation
 
 ```bash
@@ -75,6 +80,24 @@ Joins the current dirname (from `import.meta` or a string) with provided segment
 ### `pathUrl(metaOrDir: ImportMeta | string, ...segments: string[]): string`
 
 Returns a file URL href string for the resolved path, suitable for use with dynamic `import()` on all platforms.
+
+## Errors / Troubleshooting
+
+Pass `import.meta` or a directory string to the helpers. Missing or invalid bases throw an error. Paths use the host platform’s native separators; `pathUrl()` returns a file URL suitable for dynamic imports.
+
+## Development
+
+```bash
+npm test
+npm run test:gaps
+npm run lint
+npm run typecheck
+npm run pack
+```
+
+## Security
+
+Path helpers do not sandbox or validate filesystem access. Treat user-controlled path segments as untrusted and apply application-specific traversal and permission checks before reading or writing files.
 
 ## TypeScript
 
