@@ -2,7 +2,7 @@
 
 ## @eliware/path [![npm version](https://img.shields.io/npm/v/@eliware/path.svg)](https://www.npmjs.com/package/@eliware/path)[![license](https://img.shields.io/github/license/eliware/path.svg)](LICENSE)[![build status](https://github.com/eliware/path/actions/workflows/nodejs.yml/badge.svg)](https://github.com/eliware/path/actions)
 
-> An ESM/Jest/Node-friendly path utility for resolving file and directory paths in ESM environments.
+> A Node.js ESM-friendly path utility for resolving file and directory paths.
 
 ---
 
@@ -15,6 +15,8 @@
     - [Dynamic Import Example](#dynamic-import-example)
 - [API](#api)
 - [TypeScript](#typescript)
+- [Security and operations](#security-and-operations)
+- [Validation](#validation)
 - [License](#license)
 
 ## Features
@@ -97,19 +99,22 @@ Converts a file URL string or `URL` object to a filesystem path.
 
 Pass `import.meta` or a directory string to the helpers. Missing or invalid bases throw an error. Paths use the host platform’s native separators; `pathUrl()` returns a file URL suitable for dynamic imports.
 
-## Development
+## Security and operations
+
+These helpers do not access the filesystem or perform network I/O. They only
+convert and compose paths. They do not sandbox path segments; validate
+user-controlled input and enforce application-specific permissions before
+reading or writing files.
+
+## Validation
 
 ```bash
 npm test
-npm run test:gaps
 npm run lint
 npm run typecheck
+npm audit --omit=dev --audit-level=moderate
 npm run pack
 ```
-
-## Security
-
-Path helpers do not sandbox or validate filesystem access. Treat user-controlled path segments as untrusted and apply application-specific traversal and permission checks before reading or writing files.
 
 ## TypeScript
 
@@ -120,6 +125,9 @@ export function getCurrentFilename(metaOrDir?: ImportMeta | string): string;
 export function getCurrentDirname(metaOrDir?: ImportMeta | string, dirnameFn?: (path: string) => string): string;
 export const path: (metaOrDir: ImportMeta | string, ...segments: string[]) => string;
 export function pathUrl(metaOrDir: ImportMeta | string, ...segments: string[]): string;
+export function resolvePath(metaOrDir: ImportMeta | string, ...segments: string[]): string;
+export function relativePath(metaOrDir: ImportMeta | string, ...segments: string[]): string;
+export function fileUrlToPath(fileUrl: string | URL): string;
 export default path;
 ```
 
