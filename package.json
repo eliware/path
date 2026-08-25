@@ -1,9 +1,11 @@
 {
     "name": "@eliware/path",
     "type": "module",
-    "version": "1.1.8",
+    "version": "2.0.0",
     "description": "Import-meta-based path utilities for modern Node.js ESM applications.",
-    "engines": { "node": ">=26" },
+    "engines": {
+        "node": ">=26"
+    },
     "types": "index.d.ts",
     "files": [
         "index.mjs",
@@ -13,7 +15,9 @@
         "RELEASE_NOTES.md",
         "examples"
     ],
-    "publishConfig": { "access": "public" },
+    "publishConfig": {
+        "access": "public"
+    },
     "exports": {
         ".": {
             "types": "./index.d.ts",
