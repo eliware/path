@@ -81,6 +81,18 @@ Joins the current dirname (from `import.meta` or a string) with provided segment
 
 Returns a file URL href string for the resolved path, suitable for use with dynamic `import()` on all platforms.
 
+### `resolvePath(metaOrDir: ImportMeta | string, ...segments: string[]): string`
+
+Resolves path segments from the current directory and returns an absolute filesystem path.
+
+### `relativePath(metaOrDir: ImportMeta | string, ...segments: string[]): string`
+
+Returns the normalized path segments relative to the current directory.
+
+### `fileUrlToPath(fileUrl: string | URL): string`
+
+Converts a file URL string or `URL` object to a filesystem path.
+
 ## Errors / Troubleshooting
 
 Pass `import.meta` or a directory string to the helpers. Missing or invalid bases throw an error. Paths use the host platform’s native separators; `pathUrl()` returns a file URL suitable for dynamic imports.
