@@ -22,7 +22,7 @@
 ## Features
 
 - Unified API for ESM: pass either `import.meta` or a string (like `__dirname`)
-- Works seamlessly in Node.js, Jest, and modern ESM environments
+- Works seamlessly in Node.js and modern ESM environments
 - TypeScript type definitions included
 - Simple, dependency-free, and well-tested
 - `pathUrl`, `resolvePath`, and `relativePath` helpers based on `import.meta`
@@ -98,6 +98,12 @@ Converts a file URL string or `URL` object to a filesystem path.
 ## Errors / Troubleshooting
 
 Pass `import.meta` or a directory string to the helpers. Missing or invalid bases throw an error. Paths use the host platform’s native separators; `pathUrl()` returns a file URL suitable for dynamic imports.
+
+## Configuration
+
+No configuration is required. Each helper accepts an `ImportMeta` value or a
+directory string; `getCurrentDirname()` also accepts an optional injected
+dirname function for custom path behavior and testing.
 
 ## Security and operations
 
