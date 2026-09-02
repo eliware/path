@@ -24,7 +24,7 @@
 - Unified API for ESM: pass either `import.meta` or a string (like `__dirname`)
 - Works seamlessly in Node.js and modern ESM environments
 - TypeScript type definitions included
-- Simple, dependency-free, and well-tested
+- Simple, runtime dependency-free, and well-tested
 - `pathUrl`, `resolvePath`, and `relativePath` helpers based on `import.meta`
 - `fileUrlToPath` for converting file URLs back to filesystem paths
 
@@ -69,7 +69,9 @@ const mod = await import(pathUrl(import.meta, './my-module.mjs'));
 
 ### `getCurrentFilename(metaOrDir?: ImportMeta | string): string`
 
-Returns the absolute path to the current file or directory. Pass `import.meta` (ESM) or a string (e.g. `__dirname`). Throws if unavailable.
+Returns the filesystem path represented by `import.meta`. When passed a string
+(for example, `__dirname`), returns that directory string unchanged. Throws if
+the base is missing or does not contain a usable module URL.
 
 ### `getCurrentDirname(metaOrDir?: ImportMeta | string, dirnameFn?: (path: string) => string): string`
 
@@ -77,7 +79,8 @@ Returns the absolute path to the current directory. Pass `import.meta` (ESM) or 
 
 ### `default path(metaOrDir: ImportMeta | string, ...segments: string[]): string`
 
-Joins the current dirname (from `import.meta` or a string) with provided segments to form an absolute path.
+Joins the current dirname (from `import.meta` or a string) with provided
+segments. The result follows the host platform’s native path behavior.
 
 ### `pathUrl(metaOrDir: ImportMeta | string, ...segments: string[]): string`
 
@@ -85,11 +88,13 @@ Returns a file URL href string for the resolved path, suitable for use with dyna
 
 ### `resolvePath(metaOrDir: ImportMeta | string, ...segments: string[]): string`
 
-Resolves path segments from the current directory and returns an absolute filesystem path.
+Resolves path segments from the current directory and returns an absolute
+filesystem path.
 
 ### `relativePath(metaOrDir: ImportMeta | string, ...segments: string[]): string`
 
-Returns the normalized path segments relative to the current directory.
+Resolves the target from the current directory and returns its normalized path
+relative to that directory.
 
 ### `fileUrlToPath(fileUrl: string | URL): string`
 
@@ -104,6 +109,9 @@ Pass `import.meta` or a directory string to the helpers. Missing or invalid base
 No configuration is required. Each helper accepts an `ImportMeta` value or a
 directory string; `getCurrentDirname()` also accepts an optional injected
 dirname function for custom path behavior and testing.
+
+The package has no runtime dependencies and performs no initialization at
+import time. Development commands use the shared `@eliware/test` tool.
 
 ## Security and Operations
 

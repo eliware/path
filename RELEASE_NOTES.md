@@ -1,5 +1,15 @@
 # Release Notes
 
+## 2.1.0 — September 2, 2026
+
+- Split the implementation into focused current-path and URL-conversion
+  modules while preserving the root public entrypoint and API.
+- Split the test suite into matching module tests and added explicit coverage
+  for the complete root export surface.
+- Updated the shared `@eliware/test` development harness to `2.3.1`.
+- Validation: tests and lint pass with 100×4 coverage and zero warnings;
+  typecheck, production audit, package validation, and API smoke test pass.
+
 ## 2.0.0 — August 25, 2026
 
 - Adopted the shared `@eliware/test` harness for testing and linting with
