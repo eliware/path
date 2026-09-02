@@ -60,7 +60,7 @@
     },
     "homepage": "https://github.com/eliware/path#readme",
     "devDependencies": {
-        "@eliware/test": "^2.0.0",
+        "@eliware/test": "^2.3.1",
         "typescript": "^7.0.2"
     }
 }
