@@ -50,7 +50,8 @@
         "resolve",
         "relative",
         "file-url",
-        "file-url-to-path"
+        "file-url-to-path",
+        "import-meta"
     ],
     "author": "Eli Sterling <eli@eliware.org>",
     "license": "MIT",

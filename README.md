@@ -105,7 +105,7 @@ No configuration is required. Each helper accepts an `ImportMeta` value or a
 directory string; `getCurrentDirname()` also accepts an optional injected
 dirname function for custom path behavior and testing.
 
-## Security and operations
+## Security and Operations
 
 These helpers do not access the filesystem or perform network I/O. They only
 convert and compose paths. They do not sandbox path segments; validate
