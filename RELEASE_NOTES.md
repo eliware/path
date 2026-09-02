@@ -1,6 +1,6 @@
 # Release Notes
 
-## 2.0.0 — Unreleased
+## 2.0.0 — August 25, 2026
 
 - Adopted the shared `@eliware/test` harness for testing and linting with
   strict 100×4 coverage and removed direct Jest/Oxlint dependencies.
