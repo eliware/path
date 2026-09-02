@@ -1,7 +1,7 @@
 {
     "name": "@eliware/path",
     "type": "module",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "Import-meta-based path utilities for modern Node.js ESM applications.",
     "engines": {
         "node": ">=26"
