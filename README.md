@@ -67,15 +67,19 @@ const mod = await import(pathUrl(import.meta, './my-module.mjs'));
 
 ## API
 
-### `getCurrentFilename(metaOrDir?: ImportMeta | string): string`
+### `getCurrentFilename(metaOrDir: ImportMeta | string): string`
 
 Returns the filesystem path represented by `import.meta`. When passed a string
-(for example, `__dirname`), returns that directory string unchanged. Throws if
-the base is missing or does not contain a usable module URL.
+(for example, `__dirname`), returns that directory string unchanged. The
+string form is always treated as a directory, not a filename. Throws if the
+base is missing or does not contain a usable module URL.
 
-### `getCurrentDirname(metaOrDir?: ImportMeta | string, dirnameFn?: (path: string) => string): string`
+### `getCurrentDirname(metaOrDir: ImportMeta | string, dirnameFn?: (path: string) => string): string`
 
 Returns the absolute path to the current directory. Pass `import.meta` (ESM) or a string (e.g. `__dirname`). Throws if unavailable.
+
+When `dirnameFn` is provided, it is used for `ImportMeta` inputs. Directory
+string inputs are already directories, so the injected function is not called.
 
 ### `default path(metaOrDir: ImportMeta | string, ...segments: string[]): string`
 
@@ -116,9 +120,9 @@ import time. Development commands use the shared `@eliware/test` tool.
 ## Security and Operations
 
 These helpers do not access the filesystem or perform network I/O. They only
-convert and compose paths. They do not sandbox path segments; validate
-user-controlled input and enforce application-specific permissions before
-reading or writing files.
+convert and compose paths. Native `path` semantics allow absolute segments and
+`..` segments to escape the supplied base; validate user-controlled input and
+enforce application-specific permissions before reading or writing files.
 
 ## Validation
 
@@ -135,8 +139,8 @@ npm run pack
 Type definitions are included:
 
 ```ts
-export function getCurrentFilename(metaOrDir?: ImportMeta | string): string;
-export function getCurrentDirname(metaOrDir?: ImportMeta | string, dirnameFn?: (path: string) => string): string;
+export function getCurrentFilename(metaOrDir: ImportMeta | string): string;
+export function getCurrentDirname(metaOrDir: ImportMeta | string, dirnameFn?: (path: string) => string): string;
 export const path: (metaOrDir: ImportMeta | string, ...segments: string[]) => string;
 export function pathUrl(metaOrDir: ImportMeta | string, ...segments: string[]): string;
 export function resolvePath(metaOrDir: ImportMeta | string, ...segments: string[]): string;

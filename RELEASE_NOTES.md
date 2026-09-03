@@ -9,6 +9,8 @@
 - Updated the shared `@eliware/test` development harness to `2.3.1`.
 - Validation: tests and lint pass with 100×4 coverage and zero warnings;
   typecheck, production audit, package validation, and API smoke test pass.
+- Clarified directory-string and injected-`dirnameFn` semantics and expanded
+  edge-case coverage for invalid bases and native traversal behavior.
 
 ## 2.0.0 — August 25, 2026
 

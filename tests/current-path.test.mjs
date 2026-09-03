@@ -17,6 +17,13 @@ test('getCurrentDirname supports import.meta, strings, and injected dirname func
     const stubFn = jest.fn().mockReturnValue('/fake/dir');
     expect(getCurrentDirname(import.meta, stubFn)).toBe('/fake/dir');
     expect(stubFn).toHaveBeenCalledWith(getCurrentFilename(import.meta));
+    expect(getCurrentDirname(__dirname, stubFn)).toBe(__dirname);
+    expect(stubFn).toHaveBeenCalledTimes(1);
+});
+
+test('rejects missing and non-file module URLs', () => {
+    expect(() => getCurrentFilename({})).toThrow('Cannot determine current filename');
+    expect(() => getCurrentFilename({ url: 'https://example.com/module.mjs' })).toThrow();
 });
 
 test('path preserves default and named exports and handles directories and segments', () => {
@@ -32,4 +39,6 @@ test('path preserves default and named exports and handles directories and segme
 test('resolvePath and relativePath resolve from the current directory', () => {
     expect(resolvePath(import.meta, './child/file.txt')).toBe(fileURLToPath(new URL('./child/file.txt', import.meta.url)));
     expect(relativePath(import.meta, './child/file.txt')).toBe(pathJoin('child', 'file.txt'));
+    expect(resolvePath(__dirname, '..')).toBe(pathDirname(__dirname));
+    expect(relativePath(__dirname, '..')).toBe('..');
 });
