@@ -1,15 +1,15 @@
 /**
- * Returns the current filename from import.meta, a string (dirname), or __filename.
+ * Returns the current filename from import.meta or the supplied directory string.
  * @param metaOrDir import.meta (ESM) or a string directory (e.g. __dirname)
- * @returns Absolute path to the current file or directory.
+ * @returns The module filename for import.meta, or the unchanged directory string.
  */
 export function getCurrentFilename(metaOrDir: ImportMeta | string): string;
 
 /**
- * Returns the current dirname from import.meta, a string (dirname), or __dirname.
+ * Returns the current dirname from import.meta or the supplied directory string.
  * @param metaOrDir import.meta (ESM) or a string directory (e.g. __dirname)
  * @param dirnameFn Optional custom dirname function.
- * @returns Absolute path to the current directory.
+ * @returns The directory path, absolute when the input is absolute.
  */
 export function getCurrentDirname(
   metaOrDir: ImportMeta | string,
@@ -17,10 +17,10 @@ export function getCurrentDirname(
 ): string;
 
 /**
- * Joins the current dirname with provided segments to form an absolute path.
+ * Joins the current dirname with provided segments.
  * @param metaOrDir import.meta (ESM) or a string directory (e.g. __dirname)
  * @param segments Path segments to join.
- * @returns Absolute path string.
+ * @returns A path string using the host platform's native path behavior.
  */
 export const path: (
   metaOrDir: ImportMeta | string,
@@ -29,7 +29,7 @@ export const path: (
 
 /**
  * Converts a resolved path to a file URL href string for dynamic import compatibility.
- * @param metaOrDir import.meta (ESM), a string (dirname, e.g. __dirname), or undefined
+ * @param metaOrDir import.meta (ESM) or a string directory (e.g. __dirname)
  * @param segments Path segments to join.
  * @returns File URL href string.
  */

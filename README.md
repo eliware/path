@@ -76,7 +76,9 @@ base is missing or does not contain a usable module URL.
 
 ### `getCurrentDirname(metaOrDir: ImportMeta | string, dirnameFn?: (path: string) => string): string`
 
-Returns the absolute path to the current directory. Pass `import.meta` (ESM) or a string (e.g. `__dirname`). Throws if unavailable.
+Returns the directory path represented by `import.meta` or the supplied string.
+The result is absolute when the input is absolute. Throws if the base is
+missing or does not contain a usable module URL.
 
 When `dirnameFn` is provided, it is used for `ImportMeta` inputs. Directory
 string inputs are already directories, so the injected function is not called.

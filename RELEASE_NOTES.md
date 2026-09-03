@@ -1,5 +1,16 @@
 # Release Notes
 
+## 2.4.0 — September 3, 2026
+
+- Clarified that string inputs represent directory paths and that injected
+  `dirnameFn` applies only to `ImportMeta` inputs.
+- Tightened TypeScript declarations so path helpers require an explicit base,
+  matching runtime behavior.
+- Expanded invalid-base and native traversal edge-case coverage while
+  retaining 100×4 coverage.
+- Updated `@eliware/test` to `2.4.0` and scoped coverage collection to the
+  focused `src` implementation modules.
+
 ## 2.1.0 — September 2, 2026
 
 - Split the implementation into focused current-path and URL-conversion
