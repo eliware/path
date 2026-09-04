@@ -1,4 +1,4 @@
-import defaultPath, * as api from '../index.mjs';
+import defaultPath, * as api from '../src/index.mjs';
 
 test('root entrypoint exposes the complete public API', () => {
     expect(defaultPath).toBe(api.path);

@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import path, { path as namedPath, getCurrentFilename, getCurrentDirname, resolvePath, relativePath } from '../index.mjs';
+import path, { path as namedPath, getCurrentFilename, getCurrentDirname, resolvePath, relativePath } from '../src/index.mjs';
 import { fileURLToPath } from 'url';
 import { dirname as pathDirname, join as pathJoin } from 'path';
 

@@ -1,5 +1,5 @@
 import { fileURLToPath as nodeFileURLToPath } from 'url';
-import { pathUrl, fileUrlToPath } from '../index.mjs';
+import { pathUrl, fileUrlToPath } from '../src/index.mjs';
 
 test('pathUrl converts import.meta and directory inputs to file URLs', () => {
     expect(pathUrl(import.meta, 'index.mjs')).toMatch(/^file:.*\/index\.mjs$/);
