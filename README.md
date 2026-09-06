@@ -2,6 +2,8 @@
 
 ## @eliware/path [![npm version](https://img.shields.io/npm/v/@eliware/path.svg)](https://www.npmjs.com/package/@eliware/path)[![license](https://img.shields.io/github/license/eliware/path.svg)](LICENSE)[![build status](https://github.com/eliware/path/actions/workflows/nodejs.yml/badge.svg)](https://github.com/eliware/path/actions)
 
+Documentation: [docs](docs/README.md) · [specifications](specs/README.md) · [examples](examples/README.md)
+
 > A Node.js ESM-friendly path utility for resolving file and directory paths.
 
 ---
