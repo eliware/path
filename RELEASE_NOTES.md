@@ -8,7 +8,7 @@
   matching runtime behavior.
 - Expanded invalid-base and native traversal edge-case coverage while
   retaining 100×4 coverage.
-- Updated `@eliware/test` to `3.0.0` and scoped coverage collection to the
+- Updated `@eliware/test` to `6.0.1` and scoped coverage collection to the
   focused `src` implementation modules.
 
 ## 2.1.0 — September 2, 2026

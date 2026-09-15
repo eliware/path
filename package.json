@@ -17,7 +17,8 @@
         "examples"
     ],
     "publishConfig": {
-        "access": "public"
+        "access": "public",
+        "provenance": true
     },
     "exports": {
         ".": {
@@ -39,7 +40,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/eliware/path.git"
+        "url": "https://github.com/eliware/path"
     },
     "keywords": [
         "path",
@@ -60,14 +61,14 @@
         "file-url-to-path",
         "import-meta"
     ],
-    "author": "Eli Sterling <eli@eliware.org>",
+    "author": "Eliware <eli@eliware.org>",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/eliware/path/issues"
     },
     "homepage": "https://github.com/eliware/path#readme",
     "devDependencies": {
-        "@eliware/test": "^3.0.0",
+        "@eliware/test": "^6.0.1",
         "typescript": "^7.0.2"
     }
 }

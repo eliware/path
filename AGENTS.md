@@ -1,5 +1,7 @@
 # AGENTS.md
 
+Applies to: this repository and all files beneath it.
+
 ## Project
 
 `@eliware/path` provides dependency-free import-meta and filesystem path utilities for Node.js ESM applications.
