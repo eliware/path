@@ -4,16 +4,24 @@
 
 ### Breaking changes
 
-The package version is now 12.0.0 to match the applied convention set.
+The package version changed from 2.4.0 to 12.0.0. This major version matches the v12 convention set.
 
 ### Migration
 
-Update dependency ranges that target major version 2 before you use version 12.
+Update dependency ranges that target major version 2 before you install version 12.
+
+### Added
+
+Added usage, API, safety, troubleshooting, and package structure guides.
+Added repository specifications and indexes for documentation and examples.
 
 ### Changed
 
-The package now uses `@eliware/test` 12.0.0 for repository validation.
-The README, package metadata, specifications, CI, and publication workflow now follow the current conventions.
+Moved runtime modules and TypeScript declarations under `src/`.
+Split module base handling, path composition, and URL conversion into focused modules.
+Kept package-root imports and the public API.
+Updated the README, package metadata, examples, CI, and publication workflow for v12 conventions.
+Updated `@eliware/test` to 12.0.0 for repository validation.
 
 ## 2.4.0 — 2026-09-03
 
