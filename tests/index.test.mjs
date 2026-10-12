@@ -1,15 +1,15 @@
-import defaultPath, * as api from '../src/index.mjs';
+import defaultPath, * as api from "../src/index.mjs";
 
-test('root entrypoint exposes the complete public API', () => {
-    expect(defaultPath).toBe(api.path);
-    expect(Object.keys(api).sort()).toEqual([
-        'default',
-        'fileUrlToPath',
-        'getCurrentDirname',
-        'getCurrentFilename',
-        'path',
-        'pathUrl',
-        'relativePath',
-        'resolvePath',
-    ]);
+test("root entrypoint exposes the complete public API", () => {
+  expect(defaultPath).toBe(api.path);
+  expect(Object.keys(api).sort()).toEqual([
+    "default",
+    "fileUrlToPath",
+    "getCurrentDirname",
+    "getCurrentFilename",
+    "path",
+    "pathUrl",
+    "relativePath",
+    "resolvePath",
+  ]);
 });

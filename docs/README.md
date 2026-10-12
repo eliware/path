@@ -1,8 +1,7 @@
 # Documentation
 
 This directory contains end-user and maintainer documentation for
-`@eliware/path`. Start with the root [README](../README.md) for installation
-and API usage.
+`@eliware/path`. The root README covers installation and API use.
 
 ## Documents
 

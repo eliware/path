@@ -5,7 +5,7 @@ on:
       - target: dev
         cwd: /usr/src/eliware/path
         commands:
-          - git pull --ff-only
+          - git pull --ff-only origin main
           - npm ci
           - npm test
           - npm run lint

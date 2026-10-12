@@ -14,4 +14,3 @@ the path to `config.json`; it performs no filesystem or network I/O.
 
 Use only placeholder paths in copied examples. Never put passwords, tokens, or
 other secrets in example arguments.
-

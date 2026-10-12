@@ -138,3 +138,17 @@ dist
 # jest
 .jest.result
 .agentx*
+
+# Eliware repository conventions
+node_modules/
+.git/
+coverage/
+dist/
+build/
+generated/
+artifacts/
+test-results/
+.DS_Store
+Thumbs.db
+.env*
+!.env*.example

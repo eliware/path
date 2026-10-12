@@ -1,41 +1,41 @@
 # [![eliware.org](https://eliware.org/logos/brand.png)](https://discord.gg/M6aTR9eTwN)
 
-## @eliware/path [![npm version](https://img.shields.io/npm/v/@eliware/path.svg)](https://www.npmjs.com/package/@eliware/path)[![license](https://img.shields.io/github/license/eliware/path.svg)](LICENSE)[![build status](https://github.com/eliware/path/actions/workflows/nodejs.yml/badge.svg)](https://github.com/eliware/path/actions)
+## @eliware/path [![npm](https://img.shields.io/npm/v/@eliware/path)](https://www.npmjs.com/package/@eliware/path) [![License](https://img.shields.io/github/license/eliware/path)](https://github.com/eliware/path/blob/main/LICENSE) [![CI](https://github.com/eliware/path/actions/workflows/ci.yaml/badge.svg)](https://github.com/eliware/path/actions/workflows/ci.yaml)
 
-Documentation: [docs](docs/README.md) · [specifications](specs/README.md) · [examples](examples/README.md)
-
-> A Node.js ESM-friendly path utility for resolving file and directory paths.
-
----
+Import-meta-based path utilities for modern Node.js ESM applications.
 
 ## Table of Contents
 
 - [Features](#features)
-- [Installation](#installation)
+- [Requirements](#requirements)
+- [Setup](#setup)
 - [Usage](#usage)
-  - [ESM Example](#esm-example)
-    - [Dynamic Import Example](#dynamic-import-example)
+- [Development](#development)
+- [Testing](#testing)
+- [Troubleshooting](#troubleshooting)
+- [Security](#security)
 - [API](#api)
-- [TypeScript](#typescript)
-- [Security and operations](#security-and-operations)
-- [Validation](#validation)
+- [Packaging](#packaging)
+- [Examples](#examples)
+- [Support](#support)
+- [Links](#links)
 - [License](#license)
 
 ## Features
 
-- Unified API for ESM: pass either `import.meta` or a string (like `__dirname`)
-- Works seamlessly in Node.js and modern ESM environments
-- TypeScript type definitions included
-- Simple, runtime dependency-free, and well-tested
-- `pathUrl`, `resolvePath`, and `relativePath` helpers based on `import.meta`
-- `fileUrlToPath` for converting file URLs back to filesystem paths
+- Accept `import.meta` or a directory string as the base path.
+- Join, resolve, and relativize paths with native Node.js behavior.
+- Convert paths to file URLs and file URLs to paths.
+- Include TypeScript declarations and have no runtime dependencies.
 
 ## Requirements
 
-- Node.js 26 or newer
-- Native ESM support
+- Node.js 26 or later.
+- Native ESM support.
 
-## Installation
+## Setup
+
+Install the package:
 
 ```bash
 npm install @eliware/path
@@ -43,115 +43,75 @@ npm install @eliware/path
 
 ## Usage
 
-### ESM Example
+Pass `import.meta` from an ESM module, or pass a directory string:
 
 ```js
-import path, { fileUrlToPath, pathUrl, relativePath, resolvePath } from '@eliware/path';
+import path, { pathUrl, resolvePath, relativePath } from "@eliware/path";
 
-// for ESM, we need to pass import.meta
-const envFile = path(import.meta, ".env");
-console.log(envFile);
-
-// Get a file URL href for dynamic import
-const envFileUrl = pathUrl(import.meta, ".env");
-console.log(envFileUrl);
-// import(envFileUrl).then(mod => ...);
+const filePath = path(import.meta, ".env");
+const fileUrl = pathUrl(import.meta, "module.mjs");
+const absolutePath = resolvePath(import.meta, "data", "input.json");
+const relative = relativePath(import.meta, "data", "input.json");
 ```
 
-### Dynamic Import Example
+Read [release notes](RELEASE_NOTES.md) for package changes.
 
-```js
-// ESM
-import { pathUrl } from '@eliware/path';
-const mod = await import(pathUrl(import.meta, './my-module.mjs'));
+## Development
 
-```
+Read the [documentation index](docs/README.md) for the architecture and operations guides.
+Read the [repository specifications](specs/README.md) for normative rules.
+See the [example index](examples/README.md) for runnable examples.
 
-## API
+## Testing
 
-### `getCurrentFilename(metaOrDir: ImportMeta | string): string`
-
-Returns the filesystem path represented by `import.meta`. When passed a string
-(for example, `__dirname`), returns that directory string unchanged. The
-string form is always treated as a directory, not a filename. Throws if the
-base is missing or does not contain a usable module URL.
-
-### `getCurrentDirname(metaOrDir: ImportMeta | string, dirnameFn?: (path: string) => string): string`
-
-Returns the directory path represented by `import.meta` or the supplied string.
-The result is absolute when the input is absolute. Throws if the base is
-missing or does not contain a usable module URL.
-
-When `dirnameFn` is provided, it is used for `ImportMeta` inputs. Directory
-string inputs are already directories, so the injected function is not called.
-
-### `default path(metaOrDir: ImportMeta | string, ...segments: string[]): string`
-
-Joins the current dirname (from `import.meta` or a string) with provided
-segments. The result follows the host platform’s native path behavior.
-
-### `pathUrl(metaOrDir: ImportMeta | string, ...segments: string[]): string`
-
-Returns a file URL href string for the resolved path, suitable for use with dynamic `import()` on all platforms.
-
-### `resolvePath(metaOrDir: ImportMeta | string, ...segments: string[]): string`
-
-Resolves path segments from the current directory and returns an absolute
-filesystem path.
-
-### `relativePath(metaOrDir: ImportMeta | string, ...segments: string[]): string`
-
-Resolves the target from the current directory and returns its normalized path
-relative to that directory.
-
-### `fileUrlToPath(fileUrl: string | URL): string`
-
-Converts a file URL string or `URL` object to a filesystem path.
-
-## Errors / Troubleshooting
-
-Pass `import.meta` or a directory string to the helpers. Missing or invalid bases throw an error. Paths use the host platform’s native separators; `pathUrl()` returns a file URL suitable for dynamic imports.
-
-## Configuration
-
-No configuration is required. Each helper accepts an `ImportMeta` value or a
-directory string; `getCurrentDirname()` also accepts an optional injected
-dirname function for custom path behavior and testing.
-
-The package has no runtime dependencies and performs no initialization at
-import time. Development commands use the shared `@eliware/test` tool.
-
-## Security and Operations
-
-These helpers do not access the filesystem or perform network I/O. They only
-convert and compose paths. Native `path` semantics allow absolute segments and
-`..` segments to escape the supplied base; validate user-controlled input and
-enforce application-specific permissions before reading or writing files.
-
-## Validation
+Run aggregate validation:
 
 ```bash
 npm test
-npm run lint
-npm run typecheck
-npm audit --omit=dev --audit-level=moderate
-npm run pack
 ```
 
-## TypeScript
+Run `npm run lint`, `npm run audit`, `npm run format:check`, `npm run typecheck`, or `npm run pack` for one check.
 
-Type definitions are included:
+## Troubleshooting
 
-```ts
-export function getCurrentFilename(metaOrDir: ImportMeta | string): string;
-export function getCurrentDirname(metaOrDir: ImportMeta | string, dirnameFn?: (path: string) => string): string;
-export const path: (metaOrDir: ImportMeta | string, ...segments: string[]) => string;
-export function pathUrl(metaOrDir: ImportMeta | string, ...segments: string[]): string;
-export function resolvePath(metaOrDir: ImportMeta | string, ...segments: string[]): string;
-export function relativePath(metaOrDir: ImportMeta | string, ...segments: string[]): string;
-export function fileUrlToPath(fileUrl: string | URL): string;
-export default path;
+Pass `import.meta` or a directory string to each path helper.
+Missing or invalid bases cause an error.
+String inputs always represent directories.
+
+## Security
+
+These helpers do not access files or networks.
+Absolute segments and `..` can escape the base path.
+Validate untrusted segments before file access.
+
+## API
+
+- `getCurrentFilename(metaOrDir)` returns a module file path or the input directory string.
+- `getCurrentDirname(metaOrDir, dirnameFn?)` returns the current directory path.
+- `path(metaOrDir, ...segments)` joins the base directory with path segments.
+- `pathUrl(metaOrDir, ...segments)` returns a file URL string.
+- `resolvePath(metaOrDir, ...segments)` returns an absolute path.
+- `relativePath(metaOrDir, ...segments)` returns a path relative to the base directory.
+- `fileUrlToPath(fileUrl)` converts a file URL to a path.
+
+The default export is `path`. All helpers accept `ImportMeta` or a directory string.
+The optional `dirnameFn` applies only to `ImportMeta` inputs.
+
+## Packaging
+
+The package uses native ESM and supports Node.js 26 or later.
+It includes TypeScript declarations under `src/`.
+It has no runtime dependencies and performs no initialization at import time.
+
+## Examples
+
+Run the example from the repository root:
+
+```bash
+node examples/example.mjs
 ```
+
+See [examples/README.md](examples/README.md) for the full example index.
 
 ## Support
 
@@ -161,13 +121,15 @@ For help, questions, or to chat with the author and community, visit:
 
 **[eliware.org on Discord](https://discord.gg/M6aTR9eTwN)**
 
-## License
-
-[MIT © 2025 Eli Sterling, eliware.org](LICENSE)
-
 ## Links
 
 - [Home Page](https://eliware.org)
-- [GitHub](https://github.com/eliware/path)
+- [GitHub Org](https://github.com/eliware)
+- [GitHub Repo](https://github.com/eliware/path)
+- [Bug Reports](https://github.com/eliware/path/issues)
 - [npm](https://www.npmjs.com/package/@eliware/path)
 - [Discord](https://discord.gg/M6aTR9eTwN)
+
+## License
+
+[MIT © Eliware](LICENSE)

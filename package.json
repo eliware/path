@@ -1,93 +1,118 @@
 {
-    "name": "@eliware/path",
-    "type": "module",
-    "version": "2.4.0",
-    "description": "Import-meta-based path utilities for modern Node.js ESM applications.",
-    "main": "src/index.mjs",
-    "engines": {
-        "node": ">=26"
-    },
-    "types": "index.d.ts",
-    "files": [
-        "src",
-        "index.d.ts",
-        "README.md",
-        "LICENSE",
-        "RELEASE_NOTES.md",
-        "examples"
+  "name": "@eliware/path",
+  "version": "12.0.0",
+  "type": "module",
+  "description": "Import-meta-based path utilities for modern Node.js ESM applications.",
+  "keywords": [
+    "path",
+    "paths",
+    "esm",
+    "utilities",
+    "utils",
+    "nodejs",
+    "module",
+    "resolver",
+    "filepath",
+    "import",
+    "testing",
+    "resolve",
+    "relative",
+    "file-url",
+    "file-url-to-path",
+    "import-meta"
+  ],
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "main": "./src/index.mjs",
+  "files": [
+    "src/",
+    "docs/",
+    "README.md",
+    "AGENTS.md",
+    "LICENSE",
+    "RELEASE_NOTES.md",
+    "examples/",
+    "specs/",
+    ".env.example"
+  ],
+  "scripts": {
+    "test": "eliware-test",
+    "lint": "eliware-test --lint",
+    "audit": "eliware-test --audit",
+    "format": "eliware-test --format",
+    "format:check": "eliware-test --format-check",
+    "typecheck": "tsc --project tsconfig.json",
+    "pack": "eliware-test --pack"
+  },
+  "engines": {
+    "node": ">=26"
+  },
+  "devDependencies": {
+    "@eliware/test": "^12.0.0",
+    "typescript": "^7.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/**/*.test.mjs"
     ],
-    "publishConfig": {
-        "access": "public",
-        "provenance": true
-    },
-    "exports": {
-        ".": {
-            "types": "./index.d.ts",
-            "import": "./src/index.mjs"
-        }
-    },
-    "scripts": {
-        "test": "eliware-test",
-        "lint": "eliware-test --lint",
-        "typecheck": "tsc --project tsconfig.json",
-        "pack": "npm pack --dry-run"
-    },
-    "jest": {
-        "collectCoverageFrom": [
-            "src/current-path.mjs",
-            "src/conversions.mjs"
-        ]
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/eliware/path"
-    },
-    "keywords": [
-        "path",
-        "paths",
-        "esm",
-        "jest",
-        "utilities",
-        "utils",
-        "nodejs",
-        "module",
-        "resolver",
-        "filepath",
-        "import",
-        "testing",
-        "resolve",
-        "relative",
-        "file-url",
-        "file-url-to-path",
-        "import-meta"
+    "collectCoverageFrom": [
+      "src/**/*.mjs"
     ],
-    "author": "Eliware <eli@eliware.org>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/eliware/path/issues"
-    },
-    "homepage": "https://github.com/eliware/path#readme",
-    "devDependencies": {
-        "@eliware/test": "^6.0.1",
-        "typescript": "^7.0.2"
-    },
-    "prettier": {
-      "printWidth": 100,
-      "tabWidth": 2,
-      "useTabs": false,
-      "semi": true,
-      "singleQuote": false,
-      "quoteProps": "as-needed",
-      "jsxSingleQuote": false,
-      "trailingComma": "all",
-      "bracketSpacing": true,
-      "bracketSameLine": false,
-      "arrowParens": "always",
-      "proseWrap": "preserve",
-      "endOfLine": "lf"
-    },
-    "eliware": {
-      "id": "E-103",
-      "apply": ["general", "library", "npm-published"]
+    "coverageReporters": [
+      "text",
+      "json-summary"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
     }
+  },
+  "prettier": {
+    "printWidth": 100,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": false,
+    "quoteProps": "as-needed",
+    "jsxSingleQuote": false,
+    "trailingComma": "all",
+    "bracketSpacing": true,
+    "bracketSameLine": false,
+    "arrowParens": "always",
+    "proseWrap": "preserve",
+    "endOfLine": "lf"
+  },
+  "author": "Eliware <eliware@eliware.org>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliware/path.git"
+  },
+  "homepage": "https://github.com/eliware/path#readme",
+  "bugs": {
+    "url": "https://github.com/eliware/path/issues"
+  },
+  "eliware": {
+    "id": "E-103",
+    "apply": [
+      "general",
+      "library",
+      "npm-published"
+    ]
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.mjs"
+    }
+  },
+  "types": "./src/index.d.ts"
 }

@@ -13,7 +13,7 @@ export function getCurrentFilename(metaOrDir: ImportMeta | string): string;
  */
 export function getCurrentDirname(
   metaOrDir: ImportMeta | string,
-  dirnameFn?: (path: string) => string
+  dirnameFn?: (path: string) => string,
 ): string;
 
 /**
@@ -22,10 +22,7 @@ export function getCurrentDirname(
  * @param segments Path segments to join.
  * @returns A path string using the host platform's native path behavior.
  */
-export const path: (
-  metaOrDir: ImportMeta | string,
-  ...segments: string[]
-) => string;
+export declare const path: (metaOrDir: ImportMeta | string, ...segments: string[]) => string;
 
 /**
  * Converts a resolved path to a file URL href string for dynamic import compatibility.

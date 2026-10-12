@@ -14,9 +14,6 @@ identifiers.
 
 ## Example index
 
-- [Basic usage](basic/README.md) — a runnable walkthrough with expected output.
 - [Basic example source](basic/example.mjs) — the directly runnable source file.
 - [ESM path utilities](example.mjs) — default and named exports, URL conversion,
   absolute resolution, and relative paths.
-
-Return to the root [README](../README.md) for the complete API reference.

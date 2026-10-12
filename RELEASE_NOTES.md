@@ -1,74 +1,110 @@
 # Release Notes
 
-## 2.4.0 — September 3, 2026
+## 12.0.0 — 2026-10-12
 
-- Clarified that string inputs represent directory paths and that injected
-  `dirnameFn` applies only to `ImportMeta` inputs.
-- Tightened TypeScript declarations so path helpers require an explicit base,
-  matching runtime behavior.
-- Expanded invalid-base and native traversal edge-case coverage while
-  retaining 100×4 coverage.
-- Updated `@eliware/test` to `6.0.1` and scoped coverage collection to the
-  focused `src` implementation modules.
+### Breaking changes
 
-## 2.1.0 — September 2, 2026
+The package version is now 12.0.0 to match the applied convention set.
 
-- Split the implementation into focused current-path and URL-conversion
-  modules while preserving the root public entrypoint and API.
-- Split the test suite into matching module tests and added explicit coverage
-  for the complete root export surface.
-- Updated the shared `@eliware/test` development harness to `2.3.1`.
-- Validation: tests and lint pass with 100×4 coverage and zero warnings;
-  typecheck, production audit, package validation, and API smoke test pass.
-- Clarified directory-string and injected-`dirnameFn` semantics and expanded
-  edge-case coverage for invalid bases and native traversal behavior.
+### Migration
 
-## 2.0.0 — August 25, 2026
+Update dependency ranges that target major version 2 before you use version 12.
 
-- Adopted the shared `@eliware/test` harness for testing and linting with
-  strict 100×4 coverage and removed direct Jest/Oxlint dependencies.
-- Updated package metadata with Node.js `>=26` support, public publishing
-  configuration, and the release notes package allowlist.
-- Modernized CI validation for Ubuntu and Windows and separated validation
-  from tag-only publishing.
-- Breaking: the standard `test` and `lint` scripts now delegate to
-  `@eliware/test`; the package remains ESM-only.
+### Changed
 
-## 1.1.8 — August 7, 2026
+The package now uses `@eliware/test` 12.0.0 for repository validation.
+The README, package metadata, specifications, CI, and publication workflow now follow the current conventions.
 
-- Aligned repository structure, package metadata, validation scripts, CI, documentation, and package contents with Eliware library conventions.
-- Added TypeScript declaration checking and standardized package dry-run validation.
-- Moved tests and examples into convention-compliant directories.
-- Verification: tests, 100% coverage, gap checks, lint, typecheck, pack, smoke test, and production audit pass.
+## 2.4.0 — 2026-09-03
 
-## 1.1.7
+### Changed
 
-- Fixed coverage-gap filtering so fully covered files are excluded correctly.
-- Verification: tests pass with 100% coverage and lint passes.
+Clarified directory-string inputs and injected `dirnameFn` behavior.
+Tightened TypeScript declarations to require an explicit base.
+Expanded invalid-base and native traversal coverage.
+Updated `@eliware/test` to 6.0.1 and scoped coverage to implementation modules.
 
-## 1.1.6
+## 2.1.0 — 2026-09-02
 
-- Fixed Windows test failures with platform-aware path expectations and ESM URL utilities.
+### Changed
 
-## 1.1.5
+Split current-path and URL conversion code into focused modules.
+Split tests to mirror source modules and test the full root API.
+Updated the shared `@eliware/test` harness to 2.3.1.
 
-- Added `resolvePath()`, `relativePath()`, and `fileUrlToPath()`.
-- Expanded TypeScript declarations, examples, documentation, and tests.
-- Removed legacy CommonJS entrypoints and added manual workflow dispatch support.
-- Verification: 19 tests pass with 100% coverage and clean linting.
+### Fixed
 
-## 1.1.4
+Clarified directory-string and injected `dirnameFn` behavior.
+Expanded checks for invalid bases and native traversal.
 
-- Added the standardized Oxlint command and Node.js 26 maintenance updates.
+## 2.0.0 — 2026-08-25
 
-## 1.1.3
+### Breaking changes
 
-- Standardized Node.js 26 CI, coverage scripts, AgentX ignore rules, dependencies, and lockfiles.
+The `test` and `lint` scripts now use `@eliware/test`.
+The package remains ESM-only.
 
-## 1.1.2
+### Changed
 
-- Version 1.1.2 release, July 1, 2026.
+Set the minimum Node.js version to 26.
+Added public npm publishing metadata.
+Updated CI for Ubuntu and Windows.
+Separated validation from tag-based publication.
 
-## 1.1.1
+## 1.1.8 — 2026-08-07
 
-- Initial documented release, December 8, 2025.
+### Changed
+
+Aligned the repository layout, package metadata, validation, CI, documentation, and package contents.
+
+### Added
+
+Added TypeScript declaration checks and package dry-run validation.
+Moved tests and examples into standard directories.
+
+## 1.1.7 — 2026-08-07
+
+### Fixed
+
+Fixed coverage-gap filtering for fully covered files.
+
+## 1.1.6 — 2026-08-06
+
+### Fixed
+
+Fixed Windows test failures with platform-aware path expectations and ESM URL utilities.
+
+## 1.1.5 — 2026-08-06
+
+### Added
+
+Added `resolvePath()`, `relativePath()`, and `fileUrlToPath()`.
+Expanded TypeScript declarations, examples, tests, and documentation.
+
+### Changed
+
+Removed CommonJS entrypoints and added manual workflow dispatch support.
+
+## 1.1.4 — 2026-08-06
+
+### Changed
+
+Added the shared lint command and Node.js 26 maintenance updates.
+
+## 1.1.3 — 2026-08-06
+
+### Changed
+
+Standardized Node.js 26 CI, coverage scripts, ignore rules, dependencies, and lockfiles.
+
+## 1.1.2 — 2026-07-01
+
+### Changed
+
+Recorded the 1.1.2 package release.
+
+## 1.1.1 — 2025-12-08
+
+### Added
+
+Documented the initial package release.
