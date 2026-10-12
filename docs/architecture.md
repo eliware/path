@@ -16,8 +16,10 @@ The declarations describe the same exports as the runtime module.
 
 ## Helper modules
 
-[`src/current-path.mjs`](../src/current-path.mjs) defines the path helpers.
-[`src/conversions.mjs`](../src/conversions.mjs) defines the file URL helpers.
+[`src/path-base.mjs`](../src/path-base.mjs) reads the base directory from a module URL or string.
+[`src/current-path.mjs`](../src/current-path.mjs) composes and resolves paths.
+[`src/conversions.mjs`](../src/conversions.mjs) converts paths to file URLs.
+[`src/file-url-to-path.mjs`](../src/file-url-to-path.mjs) converts file URLs to paths.
 
 ## Use the guides
 
