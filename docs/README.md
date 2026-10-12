@@ -1,13 +1,11 @@
 # Documentation
 
-This directory contains end-user and maintainer documentation for
-`@eliware/path`. The root README covers installation and API use.
+Use these guides to install and use `@eliware/path`.
 
-## Documents
+## Guides
 
-- [Operations](operations.md) — runtime behavior, safety, and validation.
-- [Architecture](architecture.md) — source and test organization.
-
-Audience: package users and maintainers. Prerequisites: a supported runtime and
-the documented path inputs. Expected result: path operations follow the stated
-safety and validation rules.
+- [Usage](usage.md) — install the package and choose a path helper.
+- [API reference](api.md) — read each function signature and result.
+- [Operations and safety](operations.md) — learn runtime limits and path safety.
+- [Troubleshooting](troubleshooting.md) — resolve common input and URL errors.
+- [Architecture](architecture.md) — review package files and module roles.

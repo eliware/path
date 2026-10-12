@@ -1,28 +1,60 @@
-# Operations
+# Operations and safety
 
-`@eliware/path` is a pure path-composition library. It performs no filesystem
-writes, network requests, or import-time initialization.
+This guide describes runtime behavior, platform rules, and path safety.
 
-## Configuration
+## Runtime support
 
-No environment variables or runtime configuration are required. The package
-supports Node.js 26 or newer and native ESM.
+Use Node.js 26 or later.
+Use the package from native ESM.
+The package has no runtime dependencies.
+The package does not read environment variables or require runtime settings.
 
-## Safety
+## Runtime behavior
 
-Path helpers use native Node.js path semantics. Absolute segments and `..`
-segments can escape a supplied base. Validate untrusted segments and enforce
-application-specific permissions before using the resulting path for file
-access.
+All helpers run synchronously.
+They compose paths or convert file URLs.
+They do not read or write files.
+They do not use the network.
+They do not run setup code when an application imports the package.
 
-## Validation
+## Platform path rules
 
-Run the repository gates from the root directory:
+Path results follow the host platform's Node.js path rules.
+Windows and POSIX systems can use different path separators.
+Use `path` to join segments.
+Use `resolvePath` to create an absolute path.
+Use `relativePath` to get a path from the base to a target.
+Use `pathUrl` when an API needs a file URL.
 
-```text
-npm test
-npm run lint
-npm run typecheck
-npm audit --omit=dev --audit-level=moderate
-npm run pack
+## Path safety
+
+The helpers do not restrict access to a directory.
+The `..` segment can move above the base directory.
+An absolute segment can replace the base in `resolvePath`.
+Check every path that comes from user input before file access.
+
+Use a trusted root and check the resolved target:
+
+```js
+import { isAbsolute, relative, resolve, sep } from "node:path";
+
+function resolveInside(root, input) {
+  const absoluteRoot = resolve(root);
+  const target = resolve(absoluteRoot, input);
+  const fromRoot = relative(absoluteRoot, target);
+  const escapes = fromRoot === ".." || fromRoot.startsWith(`..${sep}`) || isAbsolute(fromRoot);
+
+  if (escapes) throw new Error("Path is outside the allowed directory.");
+  return target;
+}
 ```
+
+This check blocks lexical paths above the root.
+It does not check symbolic links.
+Apply your file-system access policy after this check.
+
+## File URL safety
+
+Pass a valid `file:` URL to `fileUrlToPath`.
+Node.js rejects unsupported URLs.
+Treat URL values from user input as untrusted data.
