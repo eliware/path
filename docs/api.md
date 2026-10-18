@@ -3,7 +3,7 @@
 The package exports one default function and seven named functions.
 All functions run synchronously and return strings.
 
-## Base input
+## Directory input
 
 Path helpers accept `ImportMeta` or a directory string.
 Pass a string only when it names a directory.
@@ -19,7 +19,7 @@ With `ImportMeta`, the function converts `metaOrDir.url` to a file system path.
 With a string, it returns that string without a change.
 It does not add a file name to a directory string.
 
-The function throws an error when the input is missing or when the module URL cannot form a file path.
+The function throws an error when the input is missing or when the module URL does not identify a file path.
 
 ## `getCurrentDirname(metaOrDir, dirnameFn?)`
 
@@ -42,7 +42,7 @@ path(metaOrDir: ImportMeta | string, ...segments: string[]): string
 ```
 
 The default export and named `path` export refer to this function.
-It joins the base directory and the path segments with Node.js `path.join`.
+It joins the starting directory and the path segments with Node.js `path.join`.
 The result uses the host platform's path rules.
 
 ## `pathUrl(metaOrDir, ...segments)`
@@ -51,7 +51,7 @@ The result uses the host platform's path rules.
 pathUrl(metaOrDir: ImportMeta | string, ...segments: string[]): string
 ```
 
-It joins the base directory and path segments.
+It joins the starting directory and path segments.
 It converts the result to a file URL and returns the URL string.
 Use this result with APIs that accept file URLs.
 
@@ -61,9 +61,9 @@ Use this result with APIs that accept file URLs.
 resolvePath(metaOrDir: ImportMeta | string, ...segments: string[]): string
 ```
 
-It resolves the base directory and path segments with Node.js `path.resolve`.
+It resolves the starting directory and path segments with Node.js `path.resolve`.
 It returns an absolute path.
-An absolute segment can replace the base path.
+An absolute segment can replace the starting path.
 
 ## `relativePath(metaOrDir, ...segments)`
 
@@ -71,10 +71,10 @@ An absolute segment can replace the base path.
 relativePath(metaOrDir: ImportMeta | string, ...segments: string[]): string
 ```
 
-It resolves the target from the base directory.
-It returns a normalized path from the base directory to the target.
-The result can contain `..` when the target is outside the base directory.
-The result is an empty string when the target equals the base directory.
+It resolves the target from the starting directory.
+It returns a normalized path from the starting directory to the target.
+The result can contain `..` when the target is outside the starting directory.
+The result is an empty string when the target equals the starting directory.
 
 ## `fileUrlToPath(fileUrl)`
 

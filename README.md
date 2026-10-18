@@ -23,8 +23,8 @@ Import-meta-based path utilities for modern Node.js ESM applications.
 
 ## Features
 
-- Accept `import.meta` or a directory string as the base path.
-- Join, resolve, and relativize paths with native Node.js behavior.
+- Accept `import.meta` or a directory string as the starting path.
+- Combine, resolve, and relativize paths with native Node.js behavior.
 - Convert paths to file URLs and file URLs to paths.
 - Include TypeScript declarations and have no runtime dependencies.
 
@@ -75,23 +75,23 @@ Run `npm run lint`, `npm run audit`, `npm run format:check`, `npm run typecheck`
 ## Troubleshooting
 
 Pass `import.meta` or a directory string to each path helper.
-Missing or invalid bases cause an error.
-String inputs always represent directories.
+Missing or invalid inputs cause an error.
+String inputs always name directories.
 
 ## Security
 
 These helpers do not access files or networks.
-Absolute segments and `..` can escape the base path.
+Absolute segments and `..` can move outside the starting path.
 Validate untrusted segments before file access.
 
 ## API
 
 - `getCurrentFilename(metaOrDir)` returns a module file path or the input directory string.
 - `getCurrentDirname(metaOrDir, dirnameFn?)` returns the current directory path.
-- `path(metaOrDir, ...segments)` joins the base directory with path segments.
+- `path(metaOrDir, ...segments)` combines the starting directory with path segments.
 - `pathUrl(metaOrDir, ...segments)` returns a file URL string.
 - `resolvePath(metaOrDir, ...segments)` returns an absolute path.
-- `relativePath(metaOrDir, ...segments)` returns a path relative to the base directory.
+- `relativePath(metaOrDir, ...segments)` returns a path relative to the starting directory.
 - `fileUrlToPath(fileUrl)` converts a file URL to a path.
 
 The default export is `path`. All helpers accept `ImportMeta` or a directory string.

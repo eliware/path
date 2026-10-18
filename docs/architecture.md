@@ -16,13 +16,13 @@ The declarations describe the same exports as the runtime module.
 
 ## Helper modules
 
-[`src/path-base.mjs`](../src/path-base.mjs) reads the base directory from a module URL or string.
+[`src/path-base.mjs`](../src/path-base.mjs) reads the starting directory from a module URL or string.
 [`src/current-path.mjs`](../src/current-path.mjs) composes and resolves paths.
 [`src/conversions.mjs`](../src/conversions.mjs) converts paths to file URLs.
 [`src/file-url-to-path.mjs`](../src/file-url-to-path.mjs) converts file URLs to paths.
 
 ## Use the guides
 
-Read the [usage guide](usage.md) to install the package and choose a helper.
+Read the [usage guide](usage.md) to install the package and select a helper.
 Read the [API reference](api.md) for function inputs and results.
 Read [operations and safety](operations.md) before you use paths from users.

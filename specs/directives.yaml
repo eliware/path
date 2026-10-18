@@ -3,26 +3,26 @@ description: Defines the public behavior and repository boundaries of @eliware/p
 directives:
   - id: E-103.0
     dos:
-      - Accept ImportMeta values or directory strings as helper bases.
+      - Accept ImportMeta values or directory strings as helper inputs.
       - Derive filesystem paths from module URLs with native Node.js path behavior.
       - Convert file URLs to filesystem paths and filesystem paths to file URLs.
       - Keep runtime behavior and TypeScript declarations in sync.
       - Keep the package native ESM and support Node.js 26 or newer.
     donts:
-      - Do not perform filesystem access or network I/O.
+      - Do not access files or use the network.
       - Do not contain absolute path segments or parent segments automatically.
     children:
       - id: E-103.0.0
         dos:
-          - Treat string bases as directory paths.
-          - Throw an error when a required base is missing or invalid.
+          - Use string inputs as directory paths.
+          - Throw an error when a required input is missing or invalid.
           - Use the optional dirname function only with ImportMeta values.
         donts:
-          - Do not treat a string base as a filename.
+          - Do not use a string input as a filename.
       - id: E-103.0.1
         dos:
           - Preserve the default path export and all documented named exports.
           - Keep every source module mirrored by one test module.
-          - Keep path composition free of filesystem writes and process initialization.
+          - Do not write files or initialize the process during path composition.
         donts:
           - Do not add CommonJS exports or internal convenience entrypoints.

@@ -21,16 +21,16 @@ They do not run setup code when an application imports the package.
 
 Path results follow the host platform's Node.js path rules.
 Windows and POSIX systems can use different path separators.
-Use `path` to join segments.
+Use `path` to combine segments.
 Use `resolvePath` to create an absolute path.
-Use `relativePath` to get a path from the base to a target.
+Use `relativePath` to return a path from the starting directory to a target.
 Use `pathUrl` when an API needs a file URL.
 
 ## Path safety
 
-The helpers do not restrict access to a directory.
-The `..` segment can move above the base directory.
-An absolute segment can replace the base in `resolvePath`.
+The helpers do not control access to a directory.
+The `..` segment can move above the starting directory.
+An absolute segment can replace the starting directory in `resolvePath`.
 Check every path that comes from user input before file access.
 
 Use a trusted root and check the resolved target:
@@ -57,4 +57,4 @@ Apply your file-system access policy after this check.
 
 Pass a valid `file:` URL to `fileUrlToPath`.
 Node.js rejects unsupported URLs.
-Treat URL values from user input as untrusted data.
+Use URL values from user input as untrusted data.

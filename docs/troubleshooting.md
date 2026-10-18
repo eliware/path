@@ -2,17 +2,17 @@
 
 Use this guide when a helper returns an unexpected path or throws an error.
 
-## The path starts from the wrong directory
+## The path starts from an incorrect directory
 
 `import.meta` points to the module that passes it to the helper.
-Pass `import.meta` from the module that needs the path.
-Pass `process.cwd()` when you need the process working directory.
-Remember that the package treats every string base as a directory.
+Pass `import.meta` from the module that calls the helper.
+Pass `process.cwd()` when the process working directory is necessary.
+Remember that the package uses every string input as a directory path.
 
-## A string base names a file
+## A string input names a file
 
-The package treats the string as a directory.
-Pass its parent directory as the base.
+The package uses the string as a directory path.
+Pass its parent directory as the directory input.
 Pass the file name as a path segment.
 
 ## A path uses unexpected separators
@@ -22,10 +22,10 @@ Windows paths can contain backslashes.
 POSIX paths can contain forward slashes.
 Do not compare paths as plain text across platforms.
 
-## A path leaves the base directory
+## A path leaves the starting directory
 
-The `..` segment can move above the base.
-`resolvePath` can also accept an absolute segment that replaces the base.
+The `..` segment can move above the starting directory.
+`resolvePath` can also accept an absolute segment that replaces the starting directory.
 Validate untrusted segments before file access.
 Read [path safety](operations.md#path-safety) for a containment check.
 
@@ -49,8 +49,8 @@ The package creates the URL but does not load the module.
 
 ## `dirnameFn` does not run
 
-`dirnameFn` runs only when the base is `ImportMeta`.
-A string base already represents a directory.
+`dirnameFn` runs only when the input is `ImportMeta`.
+A string input names a directory.
 
 ## More help
 

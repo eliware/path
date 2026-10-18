@@ -37,7 +37,7 @@ const localPath = fileUrlToPath(moduleUrl);
 
 Each helper also has a named export. The default export is the same function as the named `path` export.
 
-## Select a base
+## Select a directory
 
 Pass `import.meta` to use the current module directory:
 
@@ -53,8 +53,8 @@ import path from "@eliware/path";
 const configPath = path(process.cwd(), "config.json");
 ```
 
-The package treats every string base as a directory path.
-It does not treat a string as a module file path.
+The package uses every string input as a directory path.
+It does not use a string as a module file path.
 
 ## Create a file URL
 
@@ -84,7 +84,7 @@ const configUrl: string = pathUrl(import.meta, "config.json");
 TypeScript declarations ship with the package.
 The package does not require a separate type package.
 
-## Choose a helper
+## Select a helper
 
-Read the [API reference](api.md) to choose a helper.
+Read the [API reference](api.md) to select a helper.
 Read [operations and safety](operations.md) before you use untrusted path segments.

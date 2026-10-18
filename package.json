@@ -1,6 +1,6 @@
 {
   "name": "@eliware/path",
-  "version": "12.0.0",
+  "version": "13.0.0",
   "type": "module",
   "description": "Import-meta-based path utilities for modern Node.js ESM applications.",
   "keywords": [
