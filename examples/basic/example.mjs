@@ -1,6 +1,5 @@
-import path, { filename, relative } from "@eliware/path";
+import path, { relativePath } from "@eliware/path";
 
 const here = path(import.meta);
 console.log(here);
-console.log(filename(import.meta, "config.json"));
-console.log(relative(import.meta, "config.json"));
+console.log(relativePath(import.meta, "config.json"));
