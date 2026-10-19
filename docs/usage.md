@@ -42,6 +42,8 @@ Each helper also has a named export. The default export is the same function as 
 Pass `import.meta` to use the current module directory:
 
 ```js
+import path from "@eliware/path";
+
 const configPath = path(import.meta, "config.json");
 ```
 
@@ -86,5 +88,12 @@ The package does not require a separate type package.
 
 ## Select a helper
 
-Read the [API reference](api.md) to select a helper.
+Use `path` to join a directory and path segments.
+Use `resolvePath` to return an absolute path.
+Use `relativePath` to return a path from the directory to the target.
+Use `pathUrl` to return a file URL string.
+Use `fileUrlToPath` to convert a file URL to a path.
+Use `getCurrentFilename` or `getCurrentDirname` to read a module path or directory.
+
+Read the [API reference](api.md) for inputs, results, and errors.
 Read [operations and safety](operations.md) before you use untrusted path segments.

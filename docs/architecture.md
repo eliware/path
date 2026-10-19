@@ -13,6 +13,13 @@ import path from "@eliware/path";
 
 The package includes TypeScript declarations in [`src/index.d.ts`](../src/index.d.ts).
 The declarations describe the same exports as the runtime module.
+The package does not provide a CommonJS entry point.
+
+## Package contents
+
+The npm package includes runtime modules, TypeScript declarations, guides, examples, and repository specifications.
+The package also includes the README, release notes, license, and package instructions.
+The package has no runtime dependencies.
 
 ## Helper modules
 

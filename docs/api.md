@@ -8,6 +8,7 @@ All functions run synchronously and return strings.
 Path helpers accept `ImportMeta` or a directory string.
 Pass a string only when it names a directory.
 Pass path segments as strings.
+The helpers do not check path existence.
 
 ## `getCurrentFilename(metaOrDir)`
 
@@ -44,6 +45,7 @@ path(metaOrDir: ImportMeta | string, ...segments: string[]): string
 The default export and named `path` export refer to this function.
 It joins the starting directory and the path segments with Node.js `path.join`.
 The result uses the host platform's path rules.
+The result can be relative when the directory input is relative.
 
 ## `pathUrl(metaOrDir, ...segments)`
 
@@ -54,6 +56,7 @@ pathUrl(metaOrDir: ImportMeta | string, ...segments: string[]): string
 It joins the starting directory and path segments.
 It converts the result to a file URL and returns the URL string.
 Use this result with APIs that accept file URLs.
+This function does not load a file or module.
 
 ## `resolvePath(metaOrDir, ...segments)`
 
@@ -64,6 +67,7 @@ resolvePath(metaOrDir: ImportMeta | string, ...segments: string[]): string
 It resolves the starting directory and path segments with Node.js `path.resolve`.
 It returns an absolute path.
 An absolute segment can replace the starting path.
+This function does not check path existence.
 
 ## `relativePath(metaOrDir, ...segments)`
 
@@ -75,6 +79,7 @@ It resolves the target from the starting directory.
 It returns a normalized path from the starting directory to the target.
 The result can contain `..` when the target is outside the starting directory.
 The result is an empty string when the target equals the starting directory.
+This function does not check path existence.
 
 ## `fileUrlToPath(fileUrl)`
 
