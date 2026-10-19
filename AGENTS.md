@@ -10,15 +10,9 @@ Follow the [repository directives](specs/directives.yaml).
 
 ## Layout
 
-Follow the repository layout in the [README](README.md).
-
 ## Development
 
-Keep runtime behavior and package declarations in sync.
-
 ## Validation
-
-Use these shared commands:
 
 - Run `npm test` for repository checks.
 - Run `npm run lint` for lint checks.
@@ -28,11 +22,7 @@ Use these shared commands:
 
 ## Security
 
-Follow the safety rules in the [repository directives](specs/directives.yaml).
-
 ## Changes
-
-Keep public behavior, examples, and release notes current.
 
 ## Library
 

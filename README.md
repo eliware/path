@@ -23,19 +23,18 @@ Import-meta-based path utilities for modern Node.js ESM applications.
 
 ## Features
 
-- Accept `import.meta` or a directory string as the starting path.
-- Combine, resolve, and relativize paths with native Node.js behavior.
+- Accept `import.meta` or a directory path as input.
+- Join, resolve, and relativize paths with Node.js rules.
 - Convert paths to file URLs and file URLs to paths.
-- Include TypeScript declarations and have no runtime dependencies.
 
 ## Requirements
 
-- Node.js 26 or later.
-- Native ESM support.
+- Use Node.js 26 or later.
+- Use native ESM.
 
 ## Setup
 
-Install the package:
+Install `@eliware/path`:
 
 ```bash
 npm install @eliware/path
@@ -43,12 +42,12 @@ npm install @eliware/path
 
 ## Usage
 
-Pass `import.meta` from an ESM module, or pass a directory string:
+Pass `import.meta` or a directory path to a helper:
 
 ```js
-import path, { pathUrl, resolvePath, relativePath } from "@eliware/path";
+import path, { pathUrl, relativePath, resolvePath } from "@eliware/path";
 
-const filePath = path(import.meta, ".env");
+const filePath = path(import.meta, "config", "app.json");
 const fileUrl = pathUrl(import.meta, "module.mjs");
 const absolutePath = resolvePath(import.meta, "data", "input.json");
 const relative = relativePath(import.meta, "data", "input.json");
@@ -58,9 +57,9 @@ Read [release notes](RELEASE_NOTES.md) for package changes.
 
 ## Development
 
-Read the [documentation index](docs/README.md) for the architecture and operations guides.
-Read the [repository specifications](specs/README.md) for normative rules.
-See the [example index](examples/README.md) for runnable examples.
+Read the [documentation index](docs/README.md) for user guides.
+Read the [example index](examples/README.md) for runnable examples.
+Read the [specifications index](specs/README.md) for repository rules.
 
 ## Testing
 
@@ -70,48 +69,45 @@ Run aggregate validation:
 npm test
 ```
 
-Run `npm run lint`, `npm run audit`, `npm run format:check`, `npm run typecheck`, or `npm run pack` for one check.
+- Run `npm run lint` for lint checks.
+- Run `npm run audit` for dependency checks.
+- Run `npm run format` to format files.
+- Run `npm run format:check` to check file format.
+- Run `npm run typecheck` to check declarations.
+- Run `npm run pack` to check package contents.
 
 ## Troubleshooting
 
-Pass `import.meta` or a directory string to each path helper.
-Missing or invalid inputs cause an error.
-String inputs always name directories.
+Read the [troubleshooting guide](docs/troubleshooting.md) for input and URL errors.
 
 ## Security
 
-These helpers do not access files or networks.
-Absolute segments and `..` can move outside the starting path.
-Validate untrusted segments before file access.
+The helpers do not read files or use the network.
+Absolute segments and `..` can move outside the starting directory.
+Check paths from user input before file access.
 
 ## API
 
-- `getCurrentFilename(metaOrDir)` returns a module file path or the input directory string.
-- `getCurrentDirname(metaOrDir, dirnameFn?)` returns the current directory path.
-- `path(metaOrDir, ...segments)` combines the starting directory with path segments.
-- `pathUrl(metaOrDir, ...segments)` returns a file URL string.
-- `resolvePath(metaOrDir, ...segments)` returns an absolute path.
-- `relativePath(metaOrDir, ...segments)` returns a path relative to the starting directory.
-- `fileUrlToPath(fileUrl)` converts a file URL to a path.
-
-The default export is `path`. All helpers accept `ImportMeta` or a directory string.
-The optional `dirnameFn` applies only to `ImportMeta` inputs.
+Read the [API reference](docs/api.md) for all exported functions and their behavior.
 
 ## Packaging
 
 The package uses native ESM and supports Node.js 26 or later.
-It includes TypeScript declarations under `src/`.
-It has no runtime dependencies and performs no initialization at import time.
+It includes TypeScript declarations and has no runtime dependencies.
+Use `MAJOR.MINOR.PATCH` for package versions.
+The npm workflow publishes a tag only when it matches `package.json.version` and validation passes.
+Follow Eliware Operations for release approval.
+Read the [package guide](docs/architecture.md) for package files.
 
 ## Examples
 
-Run the example from the repository root:
+Run an example from the repository root:
 
 ```bash
 node examples/example.mjs
 ```
 
-See [examples/README.md](examples/README.md) for the full example index.
+Read the [example index](examples/README.md) for all examples.
 
 ## Support
 
