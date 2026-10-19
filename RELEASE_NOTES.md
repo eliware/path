@@ -1,12 +1,27 @@
 # Release Notes
 
-## 13.0.0 — 2026-10-17
+## 13.0.0 — 2026-10-19
+
+### Breaking changes
+
+The package version is 13.0.0. Dependency ranges that stop at major version 12 do not accept this release.
+
+### Migration
+
+Allow major version 13 in the dependency range before you install this release.
+
+### Added
+
+Added lint, type, dependency audit, and package checks to the Knit deployment.
 
 ### Changed
 
-Updated the package version and repository conventions to 13.0.0.
-Updated the npm publication workflow and Knit deployment checks.
-Updated documentation and agent instructions to match the current language rules.
+Updated CI and npm publication workflows to use `actions/checkout@v7` and full Git history.
+Aligned the npm workflow with the canonical shared workflow and its release tag check.
+Updated `@eliware/test` to 13.0.0 and refreshed locked development packages.
+Expanded user guides with helper selection and package contents.
+Reduced README and AGENTS.md content to convention-required sections and rules.
+Updated documentation and repository directives to match current language rules.
 
 ## 12.0.0 — 2026-10-12
 
