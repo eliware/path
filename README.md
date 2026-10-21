@@ -23,15 +23,11 @@ Import-meta-based path utilities for modern Node.js ESM applications.
 
 ## Features
 
-- Accept `import.meta` or a directory path as input.
-- Join, resolve, and relativize paths with Node.js rules.
-- Convert paths to file URLs and file URLs to paths.
-- Create helpers that send structured records to an injected logger.
+Compose paths from module locations or directory strings. Convert file URLs and log path operations with an injected logger.
 
 ## Requirements
 
-- Use Node.js 26 or later.
-- Use native ESM.
+Use Node.js 26 or later and native ESM.
 
 ## Setup
 
@@ -58,24 +54,13 @@ Read [release notes](RELEASE_NOTES.md) for package changes.
 
 ## Development
 
+Read the [specifications index](specs/README.md) for repository requirements.
 Read the [documentation index](docs/README.md) for user guides.
-Read the [example index](examples/README.md) for runnable examples.
-Read the [specifications index](specs/README.md) for repository rules.
 
 ## Testing
 
-Run aggregate validation:
-
-```bash
-npm test
-```
-
-- Run `npm run lint` for lint checks.
-- Run `npm run audit` for dependency checks.
-- Run `npm run format` to format files.
-- Run `npm run format:check` to check file format.
-- Run `npm run typecheck` to check declarations.
-- Run `npm run pack` to check package contents.
+Run aggregate validation with `npm test`.
+Run `npm run lint`, `npm run audit`, `npm run format`, `npm run format:check`, `npm run typecheck`, or `npm run pack` for focused checks.
 
 ## Troubleshooting
 
@@ -83,32 +68,24 @@ Read the [troubleshooting guide](docs/troubleshooting.md) for input and URL erro
 
 ## Security
 
-Path composition does not read files or use the network.
-Absolute segments and `..` can move outside the starting directory.
-Check paths from user input before file access.
-Logging records include operation context but omit path values.
+Path segments can move outside the starting directory. Check paths from user input before file access.
+Logging records omit path values and results.
 
 ## API
 
-Read the [API reference](docs/api.md) for all exported functions and their behavior.
+Read the [API reference](docs/api.md) for exported functions and types.
 
 ## Packaging
 
-The package uses native ESM and supports Node.js 26 or later.
-It includes TypeScript declarations and uses `@eliware/log` for structured logging.
-Use `MAJOR.MINOR.PATCH` for package versions.
-The npm workflow publishes a tag only when it matches `package.json.version` and validation passes.
-Follow Eliware Operations for release approval.
+The package includes `src/`, `docs/`, `README.md`, `AGENTS.md`, `LICENSE`, `RELEASE_NOTES.md`, `examples/`, `specs/`, and `.env.example`.
+Use `MAJOR.MINOR.PATCH` versions and matching `v<version>` tags.
+The npm workflow publishes only a matching version tag after validation passes.
+Get Eliware Operations approval before publication.
 Read the [package guide](docs/architecture.md) for package files.
 
 ## Examples
 
-Run an example from the repository root:
-
-```bash
-node examples/example.mjs
-```
-
+Run an example from the repository root with `node examples/example.mjs`.
 Read the [example index](examples/README.md) for all examples.
 
 ## Support
