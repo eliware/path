@@ -11,7 +11,7 @@ Run this command in your project:
 npm install @eliware/path
 ```
 
-The package has no runtime dependencies.
+The package uses `@eliware/log` for structured logging.
 TypeScript declarations ship with the package.
 
 ## Import the package
@@ -97,3 +97,34 @@ Use `getCurrentFilename` or `getCurrentDirname` to read a module path or directo
 
 Read the [API reference](api.md) for inputs, results, and errors.
 Read [operations and safety](operations.md) before you use untrusted path segments.
+
+## Log path operations
+
+Create a helper set with the package logger:
+
+```js
+import { createPathHelpers } from "@eliware/path";
+
+const paths = createPathHelpers();
+const configPath = paths.path(import.meta, "config.json");
+```
+
+Inject a logger when your application needs its own level, format, or transports.
+Install `@eliware/log` as a direct dependency before you import it:
+
+```text
+npm install @eliware/log
+```
+
+```js
+import { createLogger } from "@eliware/log";
+import { createPathHelpers } from "@eliware/path";
+
+const logger = createLogger({ level: "debug", format: "json" });
+const paths = createPathHelpers({ logger });
+const configPath = paths.path(import.meta, "config.json");
+```
+
+The helper set logs completed operations at `debug` level and failures at `error` level.
+The logger supports `error`, `warn`, `info`, `http`, `verbose`, `debug`, and `silly` levels.
+The records omit path values, path results, and error messages.

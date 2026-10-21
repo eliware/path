@@ -19,7 +19,7 @@ The package does not provide a CommonJS entry point.
 
 The npm package includes runtime modules, TypeScript declarations, guides, examples, and repository specifications.
 The package also includes the README, release notes, license, and package instructions.
-The package has no runtime dependencies.
+The package uses `@eliware/log` for structured logging.
 
 ## Helper modules
 
@@ -27,6 +27,7 @@ The package has no runtime dependencies.
 [`src/current-path.mjs`](../src/current-path.mjs) composes and resolves paths.
 [`src/conversions.mjs`](../src/conversions.mjs) converts paths to file URLs.
 [`src/file-url-to-path.mjs`](../src/file-url-to-path.mjs) converts file URLs to paths.
+[`src/create-path-helpers.mjs`](../src/create-path-helpers.mjs) adds optional logging to the public helpers.
 
 ## Use the guides
 

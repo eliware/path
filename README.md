@@ -26,6 +26,7 @@ Import-meta-based path utilities for modern Node.js ESM applications.
 - Accept `import.meta` or a directory path as input.
 - Join, resolve, and relativize paths with Node.js rules.
 - Convert paths to file URLs and file URLs to paths.
+- Create helpers that send structured records to an injected logger.
 
 ## Requirements
 
@@ -82,9 +83,10 @@ Read the [troubleshooting guide](docs/troubleshooting.md) for input and URL erro
 
 ## Security
 
-The helpers do not read files or use the network.
+Path composition does not read files or use the network.
 Absolute segments and `..` can move outside the starting directory.
 Check paths from user input before file access.
+Logging records include operation context but omit path values.
 
 ## API
 
@@ -93,7 +95,7 @@ Read the [API reference](docs/api.md) for all exported functions and their behav
 ## Packaging
 
 The package uses native ESM and supports Node.js 26 or later.
-It includes TypeScript declarations and has no runtime dependencies.
+It includes TypeScript declarations and uses `@eliware/log` for structured logging.
 Use `MAJOR.MINOR.PATCH` for package versions.
 The npm workflow publishes a tag only when it matches `package.json.version` and validation passes.
 Follow Eliware Operations for release approval.

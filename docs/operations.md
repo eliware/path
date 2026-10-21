@@ -6,16 +6,17 @@ This guide describes runtime behavior, platform rules, and path safety.
 
 Use Node.js 26 or later.
 Use the package from native ESM.
-The package has no runtime dependencies.
+The package uses `@eliware/log` to write structured operation records.
 The package does not read environment variables or require runtime settings.
 
 ## Runtime behavior
 
 All helpers run synchronously.
 They compose paths or convert file URLs.
-They do not read or write files.
-They do not use the network.
-They do not run setup code when an application imports the package.
+Path composition does not read or write files.
+Path composition does not use the network.
+The package creates its default logger when an application imports it.
+The `createPathHelpers()` factory sends operation records to its configured logger.
 
 ## Platform path rules
 
@@ -32,6 +33,8 @@ The helpers do not control access to a directory.
 The `..` segment can move above the starting directory.
 An absolute segment can replace the starting directory in `resolvePath`.
 Check every path that comes from user input before file access.
+The operation records omit path values, results, and error messages.
+Custom transports can add data, so inspect their output before you store it.
 
 Use a trusted root and check the resolved target:
 

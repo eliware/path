@@ -16,6 +16,10 @@ Allow major version 14 in the dependency range before you install this release.
 Updated `@eliware/test` to 14.0.0 and refreshed locked development packages.
 Updated the repository directives and contributor instructions to match v14 conventions.
 
+### Added
+
+Added injectable structured logging for path helper operations with `@eliware/log`.
+
 ## 13.0.0 — 2026-10-19
 
 ### Breaking changes

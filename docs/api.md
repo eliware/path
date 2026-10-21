@@ -1,7 +1,8 @@
 # API reference
 
-The package exports one default function and seven named functions.
-All functions run synchronously and return strings.
+The package exports one default function, eight named functions, and three public types.
+Path functions run synchronously and return strings.
+The `createPathHelpers()` factory returns an object of path functions.
 
 ## Directory input
 
@@ -108,3 +109,34 @@ import path, {
 
 The package is native ESM.
 It does not provide a CommonJS entry point.
+
+## `createPathHelpers(options?)`
+
+```ts
+createPathHelpers(options?: { logger?: PathLogger }): PathHelpers
+```
+
+Create path helpers that write structured records to a logger.
+The `PathLogger` type requires a Winston-style `log(info)` method.
+If `logger` is omitted, the package uses the default logger from `@eliware/log`.
+The returned object contains the same functions as the package root, except for the default export.
+
+```js
+import { createLogger } from "@eliware/log";
+import { createPathHelpers } from "@eliware/path";
+
+const paths = createPathHelpers({
+  logger: createLogger({ level: "debug", format: "json" }),
+});
+
+const configPath = paths.path(import.meta, "config.json");
+```
+
+The helpers write completed operations at `debug` level.
+They write errors at `error` level and rethrow the first error.
+Records include the operation, input type, segment count when applicable, and result type.
+Records omit input values, path results, and error messages to limit exposure of private data.
+
+The logger supports `error`, `warn`, `info`, `http`, `verbose`, `debug`, and `silly` levels.
+The helpers use `debug` and `error` because path operations do not send network requests.
+Set the logger level to `debug` to receive operation records.

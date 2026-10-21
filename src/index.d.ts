@@ -42,3 +42,26 @@ export function relativePath(metaOrDir: ImportMeta | string, ...segments: string
 
 /** Converts a file URL string or URL object to a filesystem path. */
 export function fileUrlToPath(fileUrl: string | URL): string;
+
+/** A logger that accepts structured Winston-style log records. */
+export type PathLogger = Pick<LoggerWithConfiguredLevels, "log">;
+
+/** Options for creating path helpers with injected logging. */
+export interface PathHelpersOptions {
+  logger?: PathLogger;
+}
+
+/** Path helper functions that write structured records to the supplied logger. */
+export interface PathHelpers {
+  getCurrentFilename(metaOrDir: ImportMeta | string): string;
+  getCurrentDirname(metaOrDir: ImportMeta | string, dirnameFn?: (path: string) => string): string;
+  path(metaOrDir: ImportMeta | string, ...segments: string[]): string;
+  pathUrl(metaOrDir: ImportMeta | string, ...segments: string[]): string;
+  resolvePath(metaOrDir: ImportMeta | string, ...segments: string[]): string;
+  relativePath(metaOrDir: ImportMeta | string, ...segments: string[]): string;
+  fileUrlToPath(fileUrl: string | URL): string;
+}
+
+/** Creates path helpers that write safe operation context to an injected logger. */
+export function createPathHelpers(options?: PathHelpersOptions): PathHelpers;
+import type { LoggerWithConfiguredLevels } from "@eliware/log";
