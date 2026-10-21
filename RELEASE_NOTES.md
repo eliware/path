@@ -1,5 +1,21 @@
 # Release Notes
 
+## 14.0.0 — 2026-10-20
+
+### Breaking changes
+
+The package version changed to 14.0.0 to match the applied convention version.
+Dependency ranges that stop at major version 13 do not accept this release.
+
+### Migration
+
+Allow major version 14 in the dependency range before you install this release.
+
+### Changed
+
+Updated `@eliware/test` to 14.0.0 and refreshed locked development packages.
+Updated the repository directives and contributor instructions to match v14 conventions.
+
 ## 13.0.0 — 2026-10-19
 
 ### Breaking changes

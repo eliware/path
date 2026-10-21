@@ -1,4 +1,4 @@
-version: "13.0"
+version: "14.0"
 description: Defines the public behavior and repository boundaries of @eliware/path.
 directives:
   - id: E-103.0

@@ -10,10 +10,15 @@ Follow the [repository directives](specs/directives.yaml).
 
 ## Layout
 
+Use README.md and specs/README.md to find maintained files.
+
 ## Development
+
+Give each source and test module one cohesive purpose.
 
 ## Validation
 
+- Use Node.js 26 or later and native ESM for maintained JavaScript modules.
 - Run `npm test` for repository checks.
 - Run `npm run lint` for lint checks.
 - Run `npm run audit` for dependency checks.
@@ -22,7 +27,11 @@ Follow the [repository directives](specs/directives.yaml).
 
 ## Security
 
+Keep credentials, secret values, private data, and runtime state out of Git.
+
 ## Changes
+
+Keep each document in the repository that owns its content. Update its nearest index when you add a document.
 
 ## Library
 
