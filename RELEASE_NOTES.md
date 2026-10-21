@@ -1,6 +1,6 @@
 # Release Notes
 
-## 14.0.0 — 2026-10-20
+## 14.0.0 — 2026-10-21
 
 ### Breaking changes
 
@@ -15,10 +15,15 @@ Allow major version 14 in the dependency range before you install this release.
 
 Updated `@eliware/test` to 14.0.0 and refreshed locked development packages.
 Updated the repository directives and contributor instructions to match v14 conventions.
+Reduced README.md and AGENTS.md to convention-required content.
+Expanded the API, usage, architecture, operations, and troubleshooting guides for the logging behavior.
 
 ### Added
 
-Added injectable structured logging for path helper operations with `@eliware/log`.
+Added `createPathHelpers()` to create path helpers with an injected logger.
+Added `@eliware/log` as a runtime dependency and the default logger when no logger is injected.
+Logged completed operations at `debug` level and errors at `error` level before rethrowing them.
+Omitted path values, results, and error messages from operation records.
 
 ## 13.0.0 — 2026-10-19
 
