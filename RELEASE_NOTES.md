@@ -1,5 +1,22 @@
 # Release Notes
 
+## 15.0.0 — 2026-10-21
+
+### Breaking changes
+
+The package version changed from 14.0.0 to 15.0.0 to match the v15 convention set.
+Dependency ranges that stop at major version 14 do not accept this release.
+
+### Migration
+
+Allow major version 15 in the dependency range before you install this release.
+
+### Changed
+
+Updated `@eliware/test` and `@eliware/log` to their latest v15 releases.
+Updated repository directives to v15.0.
+Refreshed the lockfile for the updated direct and transitive dependencies.
+
 ## 14.0.0 — 2026-10-21
 
 ### Breaking changes
