@@ -98,6 +98,7 @@ Import the default function or the named functions:
 
 ```js
 import path, {
+  createPathHelpers,
   fileUrlToPath,
   getCurrentDirname,
   getCurrentFilename,
@@ -106,6 +107,8 @@ import path, {
   resolvePath,
 } from "@eliware/path";
 ```
+
+Import `PathLogger`, `PathHelpersOptions`, and `PathHelpers` as types from `@eliware/path`.
 
 The package is native ESM.
 It does not provide a CommonJS entry point.
@@ -133,10 +136,11 @@ const configPath = paths.path(import.meta, "config.json");
 ```
 
 The helpers write completed operations at `debug` level.
-They write errors at `error` level and rethrow the first error.
-Records include the operation, input type, segment count when applicable, and result type.
+They write errors at `error` level, then throw the same error.
+Records for completed operations include the operation, input type, segment count when applicable, and result type.
 Records omit input values, path results, and error messages to limit exposure of private data.
 
 The logger supports `error`, `warn`, `info`, `http`, `verbose`, `debug`, and `silly` levels.
 The helpers use `debug` and `error` because path operations do not send network requests.
-Set the logger level to `debug` to receive operation records.
+The default logger uses the `info` level, so it filters completed operation records.
+Set the logger level to `debug` to receive those records.

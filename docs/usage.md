@@ -128,3 +128,5 @@ const configPath = paths.path(import.meta, "config.json");
 The helper set logs completed operations at `debug` level and failures at `error` level.
 The logger supports `error`, `warn`, `info`, `http`, `verbose`, `debug`, and `silly` levels.
 The records omit path values, path results, and error messages.
+The default logger uses the `info` level and filters completed operation records.
+Set the level to `debug` to include those records.

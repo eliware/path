@@ -12,7 +12,7 @@ import path from "@eliware/path";
 ```
 
 The package includes TypeScript declarations in [`src/index.d.ts`](../src/index.d.ts).
-The declarations describe the same exports as the runtime module.
+The declarations describe the runtime exports and public types.
 The package does not provide a CommonJS entry point.
 
 ## Package contents

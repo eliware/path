@@ -52,6 +52,12 @@ The package creates the URL but does not load the module.
 `dirnameFn` runs only when the input is `ImportMeta`.
 A string input names a directory.
 
+## Completed path operations do not appear in logs
+
+Completed operations use the `debug` level.
+The default logger uses the `info` level and filters those records.
+Set the injected logger level to `debug` to include them.
+
 ## More help
 
 Read the [usage guide](usage.md) for setup and examples.
